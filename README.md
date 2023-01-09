@@ -5,11 +5,14 @@
   <a href="https://www.roblox.com/users/3729175718/profile">
         <img alt="Roblox user of dev" src="https://img.shields.io/badge/Roblox%20User-herman__484-red?style=social&logo=roblox" />  
     </a>
+   <a href="https://github.com/D3x-Scripts/D3xWare/blob/main/LICENSE.md">
+        <img alt="License" src="https://img.shields.io/github/license/D3x-Scripts/D3xWare" />  
+    </a> 
 
 Currently, D3xWare supports theese ways of executing D3xWare:
 
-- [x] Loadstring
-- [x] Functions
+- [x] Loadstring(redirects to new)
+- [x] Functions(redirects to new)
 - [x] Code executing from PC
 
 ### Ways of executing D3xWare
