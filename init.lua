@@ -322,9 +322,3 @@ game:GetService("ReplicatedStorage").RemoteEvents.Gui.ResearcherTeleportSystem:F
 
 end)
 end
-if detectPlaceId("6708206173") then
-local plsec = _gam:Channel("RAM Scripts",0)	
-plsec:Button("FE MS Paint(claim a spot first)",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/rouxhaver/scripts/main/RateMyAvatar_MS_Paint.lua"))()		
-end)	
-end
