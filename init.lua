@@ -117,13 +117,13 @@ local isNewYear = checkDate(1,1)
 local isChristmas = checkDate(12,25)
 local isHalloween = checkDate(8,31)
 if isNewYear then
-local ph = 🎉 	
+local ph = "🎉" 	
 name = ph..old..ph
 elseif isChristmas then
-local ph = 🎄	
+local ph = "🎄"	
 name = ph..old..ph
 elseif isHalloween then
-local ph = 🎃	
+local ph = "🎃"	
 name = ph..old..ph
 else	
 name = "D3xWare V1.0.3C"	
@@ -239,7 +239,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbo
 end)
 chh:Seperator()
 chh:Button("Server Finder",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/made_by_d3x/main/server_finder.lua"))()	
+loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
 end)
 chh:Seperator()
 chh:Textbox("Reviz Admin Prefix","Press return to load the script",false,function(t)
