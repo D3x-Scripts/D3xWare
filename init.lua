@@ -115,11 +115,17 @@ local time_lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez
 local sessionId = randomString(math.random(10,15)).."/"..functs.fact(math.random(7,10))
 local isNewYear = checkDate(1,1)
 local isChristmas = checkDate(12,25)
+local isHalloween = checkDate(8,31)
 if isNewYear then
-name = "🎉"..old.."🎉"
+local ph = 🎉 	
+name = ph..old..ph
 elseif isChristmas then
-name = "🎄"..old.."🎄"
-else
+local ph = 🎄	
+name = ph..old..ph
+elseif isHalloween then
+local ph = 🎃	
+name = ph..old..ph
+else	
 name = "D3xWare V1.0.3C"	
 end	
 local win = DiscordLib:Window(name)
@@ -232,6 +238,10 @@ chh:Button("Display Name remover",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/displayremover.lua"))()
 end)
 chh:Seperator()
+chh:Button("Server Finder",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/made_by_d3x/main/server_finder.lua"))()	
+end)
+chh:Seperator()
 chh:Textbox("Reviz Admin Prefix","Press return to load the script",false,function(t)
 getgenv().pref = t
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/reviz_admin.lua'))()
@@ -311,4 +321,10 @@ local args = {
 game:GetService("ReplicatedStorage").RemoteEvents.Gui.ResearcherTeleportSystem:FireServer(unpack(args))
 
 end)
+end
+if detectPlaceId("6708206173") then
+local plsec = _gam:Channel("RAM Scripts",0)	
+plsec:Button("FE MS Paint(claim a spot first)",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/rouxhaver/scripts/main/RateMyAvatar_MS_Paint.lua"))()		
+end)	
 end
