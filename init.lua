@@ -1,4 +1,4 @@
--- // D3xWare V1.0.3C
+-- // D3xWare V1.0.3D
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
 function checkDate(mth,day)
 local month = os.date("*t")["month"]
@@ -110,7 +110,7 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-local old = "D3xWare V1.0.3C"
+local old = "D3xWare V1.0.3D"
 local name
 local platform = getplatform()
 local functs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/factorial_functions.lua"))()
@@ -224,6 +224,10 @@ chh:Button("Chatlines",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/Deez-Nuts445.github.io/main/sss.lua"))()
 end)
 chh:Seperator()
+chh:Button("Free emote player(, to toggle)",function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua"))()
+end)
+chh:Seperator()
 chh:Button("Spectate GUI",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/spectategui.lua"))()	
 end)
@@ -246,7 +250,7 @@ chh:Button("Server Finder",function()
 loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
 end)
 chh:Seperator()
-chh:Button("Friend Detector"function()
+chh:Button("Friend Detector",function()
 loadGithubScript("D3x-scripts","made_by_d3x","main","frienddetect.lua")	
 end)
 chh:Seperator()
@@ -269,12 +273,12 @@ chh:Button("Rejoin Server",function()
 game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
 chh:Seperator()
-chh:Button("Free Emote GUI(comma to toggle)",function()
-loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua"))()	
-end)
-chh:Seperator()
 chh:Toggle("Enable shiftlock",true,function(t)
 game.Players.LocalPlayer.DevEnableMouseLock = t	
+end)
+local rec = scripts:Channel("Recomended Scripts")
+rec:Button("(RECOMENDED) Zepter X Obfuscator",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VIPFirstTime/Lua-1-2-3/main/ScriptBlox/Fe-ObfuscatorGui/Scriptblox.com"))()
 end)
 local req_cp = scripts:Channel("Require Scripts")
 req_cp:Label("Click to copy script")
