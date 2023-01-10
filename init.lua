@@ -13,7 +13,11 @@ else
 return false
 end
 end
-
+function loadGithubScript(user,res_name,branch,path)
+local str = "https://raw.githubusercontent.com/%s/%s/%s/%s"
+local fmt = string.format(str,user,res_name,branch,path)
+return loadstring(game:HttpGet(fmt))()
+end
 function toClipboard(String)
 	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 	if clipBoard then
@@ -240,6 +244,10 @@ end)
 chh:Seperator()
 chh:Button("Server Finder",function()
 loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
+end)
+chh:Seperator()
+chh:Button("Friend Detector"function()
+loadGithubScript("D3x-scripts","made_by_d3x","main","frienddetect.lua")	
 end)
 chh:Seperator()
 chh:Textbox("Reviz Admin Prefix","Press return to load the script",false,function(t)
