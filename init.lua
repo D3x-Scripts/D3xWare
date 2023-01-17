@@ -142,6 +142,8 @@ ch:Seperator()
 ch:Button("Copy SessionId",function()
 toClipboard(sessionId)
 end)
+ch:Seperator()
+ch:Label("Have fun exploiting in "..getGameName().."!")
 
 local plset = home:Channel("Player")
 plset:Textbox("FOV",'"def" for default FOV',false,function(v)
