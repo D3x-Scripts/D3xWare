@@ -105,7 +105,8 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-local old = "D3xWare V1.0.3D"
+_VERSION = "V1.0.3D"
+local old = "D3xWare ".._VERSION
 local name
 local platform = getplatform()
 local functs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/factorial_functions.lua"))()
@@ -125,7 +126,7 @@ elseif isHalloween then
 local ph = "🎃"	
 name = ph..old..ph
 else	
-name = "D3xWare V1.0.3C"	
+name = old	
 end	
 local win = DiscordLib:Window(name)
 local home = win:Server("Home","0")
@@ -142,8 +143,6 @@ ch:Seperator()
 ch:Button("Copy SessionId",function()
 toClipboard(sessionId)
 end)
-ch:Seperator()
-ch:Label("Have fun exploiting in "..getGameName().."!")
 
 local plset = home:Channel("Player")
 plset:Textbox("FOV",'"def" for default FOV',false,function(v)
