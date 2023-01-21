@@ -1,4 +1,5 @@
--- // D3xWare V1.0.3D
+-- // D3xWare V1.0.3E
+if not game:IsLoaded() then repeat wait() print("D3xWare is waiting for the game to load.") until game:IsLoaded() end
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
 function checkDate(mth,day)
 local month = os.date("*t")["month"]
