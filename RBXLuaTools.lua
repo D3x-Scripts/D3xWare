@@ -155,4 +155,14 @@ return nil
 end
 end
 
+function module.chat(msg,rec)
+local args = {
+    [1] = msg,
+    [2] = rec
+}
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end	
+
+
 return module
