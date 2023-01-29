@@ -98,5 +98,61 @@ end
 end
 end
 
+function module.display2name(display)
+plrs = game.Players
+
+for _,plr in pairs(plrs:GetPlayers()) do
+if plr.DisplayName == display or plr.Name == display then 
+return plr.Name
+else
+continue
+end
+end
+end
+
+function module.name2display(name)
+plrs = game:GetService("Players")
+
+for _,plr in pairs(plrs:GetChildren()) do
+if plr.Name == name or plr.DisplayName == name then
+return plr.DisplayName
+else
+continue
+end
+end
+end
+
+function module.name2obj(name)
+local function display2name(display)
+plrs = game.Players
+
+for _,plr in pairs(plrs:GetPlayers()) do
+if plr.DisplayName == display or plr.Name == display then 
+return plr.Name
+else
+continue
+end
+end
+end
+
+local function name2display(name)
+plrs = game:GetService("Players")
+
+for _,plr in pairs(plrs:GetChildren()) do
+if plr.Name == name or plr.DisplayName == name then
+return plr.DisplayName
+else
+continue
+end
+end
+end
+
+local test = display2name(name)
+if game:GetService("Players"):FindFirstChild(test) then
+return game:GetService("Players"):FindFirstChild(test)
+else
+return nil
+end
+end
 
 return module
