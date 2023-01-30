@@ -107,7 +107,7 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-_VERSION = "V1.0.3D"
+_VERSION = "V1.0.3F"
 local old = "D3xWare ".._VERSION
 local name
 local platform = getplatform()
@@ -147,6 +147,9 @@ toClipboard(sessionId)
 end)
 
 local plset = home:Channel("Player")
+plset:Button("Get Teleport Tool",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/tptool.lua"))()
+end)
 plset:Textbox("FOV",'"def" for default FOV',false,function(v)
 shared.fov = v
 end)
