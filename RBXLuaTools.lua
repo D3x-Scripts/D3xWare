@@ -171,4 +171,12 @@ local DeltaTime = os.clock()-StartingTime
 return DeltaTime
 end
 
+function module.createInstance(cls,props)
+	local inst = Instance.new(cls)
+	for i,v in pairs(props) do
+		inst[i] = v
+	end
+	return inst
+end
+
 return module
