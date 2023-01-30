@@ -164,5 +164,11 @@ local args = {
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 end	
 
+function module.getDelta(callback)
+local StartingTime = os.clock()
+callback()
+local DeltaTime = os.clock()-StartingTime 
+return DeltaTime
+end
 
 return module
