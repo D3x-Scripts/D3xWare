@@ -342,4 +342,6 @@ end
 
 -- Load and check DT
 local fhub = loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/RBXLuaTools.lua"))()
-print("D3xWare took",fhub.getDelta(function() init() end),"to load!"))
+print("D3xWare took",fhub.getDelta(function() 
+init() 
+end),"to load!")
