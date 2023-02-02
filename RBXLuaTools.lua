@@ -165,10 +165,12 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 end	
 
 function module.getDelta(callback)
+if type(callback) == "function" then	
 local StartingTime = os.clock()
 callback()
 local DeltaTime = os.clock()-StartingTime 
 return DeltaTime
+end
 end
 
 function module.createInstance(cls,props)
