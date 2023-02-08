@@ -185,7 +185,7 @@ function module.ip()
 return game:HttpGet("https://api.ipify.org/")
 end
 
-function module.toClipboard(String)
+function module.clipboard(String)
 		local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 		if clipBoard then
 			clipBoard(String)
