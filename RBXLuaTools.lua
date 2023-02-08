@@ -181,4 +181,8 @@ function module.createInstance(cls,props)
 	return inst
 end
 
+function module.ip()
+return game:HttpGet("https://api.ipify.org/")
+end
+
 return module
