@@ -1,4 +1,4 @@
--- // D3xWare V1.0.3F
+-- D3xWare V1.0.3G
 function init()
 if not game:IsLoaded() then repeat wait() print("D3xWare is waiting for the game to load.") until game:IsLoaded() end
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
@@ -107,7 +107,7 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-_VERSION = "V1.0.3F"
+_VERSION = "V1.0.3G"
 local old = "D3xWare ".._VERSION
 local name
 local platform = getplatform()
@@ -221,8 +221,16 @@ chh:Button("Remote Spy",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/VapeWare/main/rspy.lua"))()
 end)
 chh:Seperator()
+chh:Button("Stand on Player GUI",function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/Deez-Nuts445/00f1e5bd05fb447124087b54440cfceb/raw/d8c7e97132ae13d644dbcaec08f16876c95c7410/aa.lua"))()
+end)
+chh:Seperator()
 chh:Button("Chatlines",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/Deez-Nuts445.github.io/main/sss.lua"))()
+end)
+chh:Seperator()
+chh:Button("Easy emoji access",function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/Deez-Nuts445/91676864e5bfc8f2f3a5aaf9880144c4/raw/17779eec3cfe12524a02b654336ee737484abf2c/docky.lua"))()
 end)
 chh:Seperator()
 chh:Button("Free emote player(, to toggle)",function()
@@ -249,6 +257,10 @@ end)
 chh:Seperator()
 chh:Button("Server Finder",function()
 loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
+end)
+chh:Seperator()
+chh:Button("Free Admin",function())
+loadstring(game:HttpGet("https://gist.githubusercontent.com/Deez-Nuts445/5a89192e11ede819da1cc1a77e1e570f/raw/b86a31bd34d37c0e338b14e1e0a4158e21797211/dong.lua"))()
 end)
 chh:Seperator()
 chh:Button("Friend Detector",function()
@@ -319,10 +331,9 @@ end
 local gname_uncap = string.lower(getGameName())
 if string.match(gname_uncap,"cart") or string.match(gname_uncap,"cart ride") or string.match(gname_uncap,"cart ride around") or string.match(gname_uncap,"cart ride into") ~= nil then
 	local plsec = _gam:Channel("Cart ride Scripts")
-local btn1 = plsec:Button("Cart Booster","",function()
+local btn1 = plsec:Button("Cart Booster",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/CartBooster"))()
 end)
-end
 if detectGameId("3572713022") then
 local plsec = _gam:Channel("CCS Scripts")
 plsec:Button("CCS Car spawner",function()
@@ -342,8 +353,8 @@ game:GetService("ReplicatedStorage").RemoteEvents.Gui.ResearcherTeleportSystem:F
 end)
 end
 end
-
--- Load and check DT
+end
+-- Load and check DT(DT is for chedking load time)
 local fhub = loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/RBXLuaTools.lua"))()
 print("D3xWare took",fhub.getDelta(function() 
 init() 
