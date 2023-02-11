@@ -259,7 +259,7 @@ chh:Button("Server Finder",function()
 loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
 end)
 chh:Seperator()
-chh:Button("Free Admin",function())
+chh:Button("Free Admin",function()
 loadstring(game:HttpGet("https://gist.githubusercontent.com/Deez-Nuts445/5a89192e11ede819da1cc1a77e1e570f/raw/b86a31bd34d37c0e338b14e1e0a4158e21797211/dong.lua"))()
 end)
 chh:Seperator()
