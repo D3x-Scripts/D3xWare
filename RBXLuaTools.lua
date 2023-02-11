@@ -460,6 +460,4 @@ end
 end
 
 
-print(getCountry())
-
 return module
