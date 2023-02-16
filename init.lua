@@ -1,4 +1,4 @@
--- D3xWare V1.0.3G
+-- D3xWare V1.0.4B
 function init()
 if not game:IsLoaded() then repeat wait() print("D3xWare is waiting for the game to load.") until game:IsLoaded() end
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
@@ -107,14 +107,15 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-_VERSION = "V1.0.3G"
+_VERSION = "V1.0.4"
 local old = "D3xWare ".._VERSION
 local name
 local platform = getplatform()
+local fhub = loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/RBXLuaTools.lua"))()
 local functs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/factorial_functions.lua"))()
 local funct = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/getclosestplayer.lua"))()
 local time_lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/d.lua"))()
-local sessionId = randomString(math.random(10,15)).."/"..functs.fact(math.random(7,10))
+local sessionId = fhub.services().RbxAnalyticsService:GetSessionId()
 local isNewYear = checkDate(1,1)
 local isChristmas = checkDate(12,25)
 local isHalloween = checkDate(8,31)
@@ -149,6 +150,9 @@ end)
 local plset = home:Channel("Player")
 plset:Button("Get Teleport Tool",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/tptool.lua"))()
+end)
+plset:Button("Netless",function()
+loadstring(game:HttpGetAsync("https://scripter.cutecats.vip/u/Uty6YQ09"))()
 end)
 plset:Textbox("FOV",'"def" for default FOV',false,function(v)
 shared.fov = v
@@ -235,6 +239,14 @@ end)
 chh:Seperator()
 chh:Button("Free emote player(, to toggle)",function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua"))()
+end)
+chh:Seperator()
+chh:Button("Heart attack script(R6/15)",function()
+loadstring(game:HttpGet("https://scripter.cutecats.vip/u/Kp5nlWGY"))()
+end)
+chh:Seperator()
+chh:Button("Translate chat script",function()
+loadstring(game:HttpGet("https://scripter.cutecats.vip/u/2bh5WIbg"))()
 end)
 chh:Seperator()
 chh:Button("Spectate GUI",function()
