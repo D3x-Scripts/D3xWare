@@ -459,5 +459,24 @@ return "GetCountryRegionForPlayerAsync failed: "..code
 end
 end
 
+local mods = {
+	['esp'] = 'https://kiriot22.com/releases/ESP.lua;
+}
+
+function module.getModules()
+local functionNames = {"esp"}
+local runner = {}
+function runner:RunModule(script)
+for i,v in pairs(functionNames)
+if script == v then
+local selected = mods[script]
+return loadstring(game:HttpGet(selected))()			
+end			
+end
+return runner
+end
+
+
+
 
 return module
