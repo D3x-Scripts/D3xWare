@@ -477,10 +477,13 @@ return ls
 end
 end
 end 
-return runner
+return runner	
+end	
+
+
+function module.getHWID()
+return game:GetService("RbxAnalyticsService"):GetClientId()	
 end
-
-
 
 
 
