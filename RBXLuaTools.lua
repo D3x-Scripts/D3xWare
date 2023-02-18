@@ -459,22 +459,27 @@ return "GetCountryRegionForPlayerAsync failed: "..code
 end
 end
 
+function module.getMods()
 local mods = {
-	['esp'] = 'https://kiriot22.com/releases/ESP.lua;
+	['time_checker'] = 'https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/yyy.lua';
 }
-
-function module.getModules()
-local functionNames = {"esp"}
-local runner = {}
-function runner:RunModule(script)
-for i,v in pairs(functionNames)
-if script == v then
-local selected = mods[script]
-return loadstring(game:HttpGet(selected))()			
-end			
+local f = {}
+for i,v in pairs(mods) do
+table.insert(f,i)
 end
+local runner = {}
+function runner.findMD(s)
+for i,v in pairs(f) do
+if s == v then
+sel = mods[v]
+ls = loadstring(game:HttpGet(sel))()
+return ls
+end
+end
+end 
 return runner
 end
+
 
 
 
