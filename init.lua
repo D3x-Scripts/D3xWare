@@ -1,4 +1,4 @@
--- D3xWare V1.0.4B
+-- D3xWare V1.0.4C
 function init()
 if not game:IsLoaded() then repeat wait() print("D3xWare is waiting for the game to load.") until game:IsLoaded() end
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
@@ -307,6 +307,9 @@ local rec = scripts:Channel("Recomended Scripts")
 rec:Button("(RECOMENDED) Zepter X Obfuscator",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/VIPFirstTime/Lua-1-2-3/main/ScriptBlox/Fe-ObfuscatorGui/Scriptblox.com"))()
 end)
+rec:Button("(RECOMENDED) OP UI Changer",function()
+loadstring(game:HttpGet("https://scripter.cutecats.vip/u/faAhqfBA"))()
+end)	
 local req_cp = scripts:Channel("Require Scripts")
 req_cp:Label("Click to copy script")
 req_cp:Seperator()
