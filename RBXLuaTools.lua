@@ -489,8 +489,8 @@ function module.compressn(n)
 	if tonumber(n) ~= nil then
 	local s = tostring(math.floor(n))
 	local r = string.sub(s, 1, ((#s - 1) % 3) + 1) .. ({"", "K", "M", "B", "T", "QA", "QI", "SX", "SP", "OC", "NO", "DC", "UD", "DD", "TD", "QAD", "QID", "SXD", "SPD", "OCD", "NOD", "VG", "UVG"})[math.floor((#s - 1) / 3) + 1]
-	local f = tonumber(r)	
-	return f
+		
+	return r
 	end
 end
 
