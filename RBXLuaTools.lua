@@ -494,4 +494,11 @@ function module.compressn(n)
 	end
 end
 
+function module.returnHttpReq()
+httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+return httprequest
+end	
+function module.Cursor()
+return game.Players.LocalPlayer:GetMouse()	
+end	
 return module
