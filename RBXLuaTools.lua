@@ -500,8 +500,5 @@ return httprequest
 end	
 function module.Cursor()
 return game.Players.LocalPlayer:GetMouse()	
-end	
-function module.getVard(...)
-return {...}
-end   
+end	   
 return module
