@@ -296,9 +296,13 @@ local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKhol
 module:Teleport(game.PlaceId)
 end)
 chh:Seperator()
+chh:Button("Sub-Place Finder",function()
+loadstring(game:HttpGet("https://is.gd/heviye"))()
+end)
+chh:Seperator()
 chh:Button("Rejoin Server",function()
 game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
-end)
+end)	
 chh:Seperator()
 chh:Toggle("Enable shiftlock",true,function(t)
 game.Players.LocalPlayer.DevEnableMouseLock = t	
@@ -368,6 +372,18 @@ game:GetService("ReplicatedStorage").RemoteEvents.Gui.ResearcherTeleportSystem:F
 end)
 end
 end
+if detectPlaceId("23578803") then
+local plsec = _gam:Channel("Hotel Elephant Scripts")
+plsec:Textbox("Money Amount","Money Amount for money script",false,function(text)
+print(text)
+shared.money = text			
+end)
+
+plsec:Button("Give money",function() 
+loadstring(game:HttpGet("https://is.gd/ewowez"))()	
+end)
+
+end	
 end
 -- Load and check DT(DT is for chedking load time)
 local fhub = loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/RBXLuaTools.lua"))()
