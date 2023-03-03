@@ -1,7 +1,7 @@
 local list = {
     ["10679961467"] = "https://raw.githubusercontent.com/Deez-Nuts445/D3xWare/main/ScriptsForGames/1.lua";
-    ["189707"] = 'https://raw.githubusercontent.com/Deez-Nuts445/D3xWare/main/ScriptsForGames/2.lua'
-    ["11800876530"] = 'https://raw.githubusercontent.com/Deez-Nuts445/D3xWare/main/ScriptsForGames/3.lua'
+    ["189707"] = 'https://raw.githubusercontent.com/Deez-Nuts445/D3xWare/main/ScriptsForGames/2.lua';
+    ["11800876530"] = 'https://raw.githubusercontent.com/Deez-Nuts445/D3xWare/main/ScriptsForGames/3.lua';
 }
 
 for id, url in next, list do
