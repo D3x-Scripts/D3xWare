@@ -1,4 +1,5 @@
--- D3xWare V1.0.4C
+-- D3xWare V1.0.5
+local alertlib = loadstring(game:HttpGet("https://scripter.cutecats.vip/u/RWR3iGJB"))()
 function init()
 if not game:IsLoaded() then repeat wait() print("D3xWare is waiting for the game to load.") until game:IsLoaded() end
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/discord-ui.lua")()
@@ -107,7 +108,7 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-_VERSION = "V1.0.4"
+_VERSION = "V1.0.5"
 local old = "D3xWare ".._VERSION
 local name
 local platform = getplatform()
@@ -339,8 +340,7 @@ local aaa = MM:Label("This section is for game detectected scripts.")
 local utils = win:Server("Tools",0)
 local page1 = utils:Channel("Player")
 page1:Button("Nearest Player",function()
-print(funct.GetClosestPlayer())
-DiscordLib:Notification("Hey","Printed closest player!","Ok!")
+alertlib.info("D3xWare",funct.GetClosestPlayer(),4)
 end)
 if detectPlaceId("155615604") then
 	local plsec = _gam:Channel("Prison Life Scripts")
@@ -390,7 +390,16 @@ end)
 end	
 end
 -- Load and check DT(DT is for chedking load time)
+local as = ""
 local fhub = loadstring(game:HttpGet("https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/RBXLuaTools.lua"))()
-print("D3xWare took",fhub.getDelta(function() 
-init() 
-end),"to load!")
+local s,e = pcall(function()	
+as = fhub.getDelta(function()
+init()			
+end)
+end)
+
+if s then
+alertlib.success("D3xWare","Took "..as.." seconds!")	
+else
+alertlib.error("D3xWare","D3xWare Failed! Error: "..e)
+end	
