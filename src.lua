@@ -6,6 +6,25 @@ local TeleportCheck = false
 local exec = identifyexecutor()
 local a = true
 local line = "Test me, "
+function GetClosestPlayer()
+local player = game.Players.LocalPlayer
+local players = game.Players:GetPlayers()
+  local minDistance = math.huge
+  local closestPlayer = ""
+  for _, otherPlayer in pairs(players) do
+    if otherPlayer == player then
+      continue
+    end
+    local distance = (player.Character.PrimaryPart.Position - otherPlayer.Character.PrimaryPart.Position).magnitude
+    if distance < minDistance then
+      closestPlayer = otherPlayer
+      minDistance = distance
+      display = game.Players:FindFirstChild(closestPlayer.Name).DisplayName
+    end
+  end
+return {display,closestPlayer,minDistance}
+end
+
 function toClipboard(String)
 	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 	if clipBoard then
@@ -91,7 +110,7 @@ function toClipboard(String)
 	end
 end
 info = {
-    version = "V1.0.3C",
+    version = "V1.0.6",
    holidays = {
        Christmas = {
            ["emoji"] = "🎄",
@@ -106,7 +125,9 @@ info = {
         "Defiently not gonna delete the old one again...",
         "Made with :love: by herman_484",
 		"Hehehehah",
-        "Little John used galvanised square steel and eco-friendly wood venners\nTo build his house.",
+        "Little John used galvanised square steel and eco-friendly\nwood venners to build his house.",
+        "How did i forgort to put out 1.0.4",
+        "Did you know if you streched\nyour blood veins out your body you will die?"
     },
 	dlines = {
 		m = {
@@ -168,6 +189,10 @@ configs = {
             Title = "Player",
             Icon = "user",
         },
+        Tools = {
+            Title = "Tools",
+            Icon = "hammer",
+        },
         Settings = {
             Title = "Settings",
             Icon = "settings",
@@ -183,6 +208,7 @@ local Tabs = {
     Scripts = Window:AddTab(configs["tab"]["Scripts"]),
     Game = Window:AddTab(configs["tab"]["Game"]),
     Player = Window:AddTab(configs["tab"]["Player"]),
+    Tools = Window:AddTab(configs["tab"]["Tools"]),
     Settings = Window:AddTab(configs["tab"]["Settings"]),
 }
 
@@ -432,6 +458,56 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
     Toggle:OnChanged(function()
         game.Players.LocalPlayer.DevEnableMouseLock = Options.Shiftlock.Value
     end)
+
+    -- TOOLS TAB
+
+   Tabs["Tools"]:AddButton({
+       Title = "Find nearest player",
+       Description = "Click to find (a bit broken)",
+       Callback = function()
+       stuff= GetClosestPlayer()
+       print(stuff[1])
+       msg = stuff[1],"with a distance of ",stuff[3]
+        Window:Dialog({
+                Title = "D3xWare Toolbox",
+                Content = msg,
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                }
+            })
+       end
+   })
+
+   -- too lazy to try to make it
+
+--   Tabs["Tools"]:AddParagraph({
+--       Title = "Game Joiner",
+--       Content = "Enter a game's place id, then click on the teleport button."
+--   })
+
+--   Tabs["Tools"]:AddInput("aa",{
+--       Title = "Place ID",
+--       Default = "",
+--       Placeholder = "Put in the Place ID.",
+--       Numeric = true,
+--       Finished = false,
+--       Callback = function(v)
+--         shared.id = v
+--       end
+--   })
+
+--   Tabs["Tools"]:AddButton({
+--         Title = "Teleport",
+--         Description  = "Click to teleport to given place id(WIP)",
+--         Callback = function()
+--             game:GetService("TeleportService"):TeleportToPlaceInstance(shared.id , game.Players.LocalPlayer)
+--        end
+--   })
 
 -- SETTINGS TAB
 
