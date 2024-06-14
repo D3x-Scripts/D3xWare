@@ -2,7 +2,19 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local plr = game.Players.LocalPlayer
-local line = "Hello"
+local TeleportCheck = false
+local exec = identifyexecutor()
+local a = true
+local line = "Test me, "
+function toClipboard(String)
+	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+	if clipBoard then
+		clipBoard(String)
+		print("Ok")
+	else
+		warn("No")
+	end
+end
 function detectPlaceId(id)
 return  (game.PlaceId == tonumber(id))
 end
@@ -81,14 +93,20 @@ end
 info = {
     version = "V1.0.3C",
    holidays = {
-       Christmas = "put func",
-       NYE = "put func",
-       NY = "put func",
+       Christmas = {
+           ["emoji"] = "🎄",
+           ["trigger"] = checkDate(12,25)
+       },
+       NY = {
+           ["emoji"] = "🎉",
+           ["trigger"] = checkDate(1,1)
+       },
    },
     plines = {
         "Defiently not gonna delete the old one again...",
         "Made with :love: by herman_484",
 		"Hehehehah",
+        "Little John used galvanised square steel and eco-friendly wood venners\nTo build his house.",
     },
 	dlines = {
 		m = {
@@ -114,6 +132,10 @@ dline = info["dlines"]["i"][math.random(1,#info["dlines"]["i"])]
 end
 
 title = "D3xWare version "..info["version"]
+
+if info["holidays"]["Christmas"] then
+    title = ""..title..""
+end    
 
  a = math.random(1,#info["plines"])
  line = info["plines"][a]
@@ -182,6 +204,11 @@ local Options = Fluent.Options
         Content = getplatform(),
     })
 
+    Tabs["Home"]:AddParagraph({
+        Title = "Exploit using:",
+        Content = exec,
+    })
+
   -- SCRIPT TAB
 
     Tabs["Scripts"]:AddParagraph({
@@ -248,6 +275,13 @@ end
         Description = "Click to execute",
         Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/d",true))()
+        end,
+       })
+       Tabs["Scripts"]:AddButton({
+        Title = "Synapse X UI",
+        Description = "Click to execute",
+        Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/8Q4X7RfN",true))()
         end,
        })
         Tabs["Scripts"]:AddButton({
@@ -323,7 +357,20 @@ Tabs["Game"]:AddParagraph({
     Title = "PlaceId",
     Content = game.PlaceId,
 })
-
+ Tabs["Game"]:AddButton({
+            Title = "Rejoin",
+            Description = "Click to execute",
+            Callback = function()
+               game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+            end,    
+        })
+Tabs["Game"]:AddButton({
+        Title = "Exit",
+        Description  = "Click to exit with style",
+        Callback = function()
+       game:Shutdown()
+        end
+})
     -- PLAYER TAB
 local Input = Tabs["Player"]:AddInput("Speed", {
         Title = "Speed",
@@ -372,7 +419,12 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
         Description  = "Click to execute",
         Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/0AAaq28G"))()
-        
+        Fluent:Notify({
+        Title = "Ran freecam unlock!",
+        Content = "Use the keybind Left Ctrl + P to toggle freecam.",
+        SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+        })
         end
     })
 
@@ -381,7 +433,19 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
         game.Players.LocalPlayer.DevEnableMouseLock = Options.Shiftlock.Value
     end)
 
+-- SETTINGS TAB
+
+if queue_on_teleport then
+    local t2 = Tabs["Settings"]:AddToggle("mmm",{Title="Execute back on moving servers", Default = a})
+
+    Toggle:OnChanged(function()
+        a = Options.mmm.Value
+        TeleportCheck = false
+    end)
+end   
+
 -- Backgears
+
 function grav(n)
 if n == "def" then
 game.workspace.Gravity = 192.6
@@ -420,8 +484,14 @@ while wait() do
     grav(shared.g)
     speed(shared.s)
     jumppower(shared.j)
+    if a and queue_on_teleport and (not TeleportCheck) then
+        TeleportCheck = true
+        --queue_on_teleport("print('hi')")
+        queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
+    end    
 end
 end)
+                                
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
