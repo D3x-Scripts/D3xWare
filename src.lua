@@ -466,8 +466,7 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
        Description = "Click to find (a bit broken)",
        Callback = function()
        stuff= GetClosestPlayer()
-       print(stuff[1])
-       msg = stuff[1],"with a distance of ",stuff[3]
+       msg = stuff[2].Name,"with a distance of ",stuff[3]
         Window:Dialog({
                 Title = "D3xWare Toolbox",
                 Content = msg,
