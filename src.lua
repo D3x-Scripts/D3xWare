@@ -3,6 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local plr = game.Players.LocalPlayer
 local TeleportCheck = false
+local Options = Fluent.Options
 local exec = identifyexecutor()
 local a = true
 local line = "Test me, "
@@ -144,11 +145,11 @@ info = {
 local dline = "Hewo"
 local hour = gettime(24):format("#H")
 
-if between(5,hour,11) then
+if between(24,hour,11) then
 dline = info["dlines"]["m"][math.random(1,#info["dlines"]["m"])] 
 elseif between(12,hour,18) then
 dline = info["dlines"]["n"][math.random(1,#info["dlines"]["n"])]
-elseif between(19,hour,4) then
+else
 dline = info["dlines"]["i"][math.random(1,#info["dlines"]["i"])]
 end
 
@@ -212,10 +213,8 @@ local Tabs = {
     Settings = Window:AddTab(configs["tab"]["Settings"]),
 }
 
-local Options = Fluent.Options
-
     Fluent:Notify({
-        Title = "Hey, over here1",
+        Title = "Hey, over here!",
         Content = "Join our group at BloxRob Studios!",
         SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
         Duration = 2 -- Set to nil to make the notification not disappear
@@ -454,11 +453,15 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
         end
     })
 
-    local Toggle = Tabs["Player"]:AddToggle("Shiftlock", {Title = "Shiftlock", Default = game.Players.LocalPlayer.DevEnableMouseLock })
+    local Toggle = Tabs["Player"]:AddToggle("MyToggle", {Title = "Shiftlock", Default = game.Players.LocalPlayer.DevEnableMouseLock })
+
     Toggle:OnChanged(function()
-        game.Players.LocalPlayer.DevEnableMouseLock = Options.Shiftlock.Value
+        game.Players.LocalPlayer.DevEnableMouseLock = Options.MyToggle.Value
     end)
 
+    Options.MyToggle:SetValue(game.Players.LocalPlayer.DevEnableMouseLock)
+
+    
     -- TOOLS TAB
 
    Tabs["Tools"]:AddButton({
@@ -466,7 +469,8 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
        Description = "Click to find (a bit broken)",
        Callback = function()
        stuff= GetClosestPlayer()
-       msg = stuff[2].Name,"with a distance of ",stuff[3]
+       print(stuff[1])
+       msg = stuff[1],"with a distance of ",stuff[3]
         Window:Dialog({
                 Title = "D3xWare Toolbox",
                 Content = msg,
@@ -513,7 +517,7 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
 if queue_on_teleport then
     local t2 = Tabs["Settings"]:AddToggle("mmm",{Title="Execute back on moving servers", Default = a})
 
-    Toggle:OnChanged(function()
+    t2:OnChanged(function()
         a = Options.mmm.Value
         TeleportCheck = false
     end)
