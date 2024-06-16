@@ -302,6 +302,13 @@ end
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/d",true))()
         end,
        })
+        Tabs["Scripts"]:AddButton({
+        Title = "Electron UI",
+        Description = "Click to execute",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/ZMKiRkQh",true))()
+        end,
+    }) 
        Tabs["Scripts"]:AddButton({
         Title = "Synapse X UI",
         Description = "Click to execute",
