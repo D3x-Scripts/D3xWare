@@ -64,8 +64,7 @@ function gettime(mode)
             return (format_string:gsub('#.', replacements))
         end
     }
-end
-
+end  
 function checkDate(mth,day)
 local month = os.date("*t")["month"]
 local _day = os.date("*t")["day"]
@@ -473,9 +472,9 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
 
     local Input = Tabs["Player"]:AddInput("sw", {
         Title = "Set CustomPhysicalProperties\n(Stregthen/Weaken)",
-        Default = "",
+        Default = 0.7,
         Placeholder = "Enter a number",
-        Numeric = true, -- Only allows numbers
+        Numeric = aaaaaaddd, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
         Callback = function(Value)
          shared.a = Value
