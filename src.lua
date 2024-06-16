@@ -3,6 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local plr = game.Players.LocalPlayer
 local TeleportCheck = false
+shared.a = 0.7
 local Options = Fluent.Options
 local exec = identifyexecutor()
 local a = true
