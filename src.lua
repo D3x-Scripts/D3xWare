@@ -36,7 +36,7 @@ function toClipboard(String)
 	end
 end
 function detectPlaceId(id)
-return  (game.PlaceId == tonumber(id))
+return  (game.PlaceId == tonumber(id)) or (game.GameId == tonumber(id))
 end
 function between(mi,v,ma)
 v=tonumber(v)
@@ -111,7 +111,7 @@ function toClipboard(String)
 	end
 end
 info = {
-    version = "V1.0.6",
+    version = "V1.0.7",
    holidays = {
        Christmas = {
            ["emoji"] = "🎄",
@@ -145,11 +145,11 @@ info = {
 local dline = "Hewo"
 local hour = gettime(24):format("#H")
 
-if between(24,hour,11) then
+if between(5,hour,11) then
 dline = info["dlines"]["m"][math.random(1,#info["dlines"]["m"])] 
 elseif between(12,hour,18) then
 dline = info["dlines"]["n"][math.random(1,#info["dlines"]["n"])]
-else
+elseif between(19,hour,4) then
 dline = info["dlines"]["i"][math.random(1,#info["dlines"]["i"])]
 end
 
@@ -321,10 +321,10 @@ end
         Content = "If you join a supported game, then you will see some scripts.", 
      })
 
-if detectPlaceId("155615604") or detectPlaceId("7993293100") then
+if detectPlaceId("155615604") or detectPlaceId("7993293100") or detectPlaceId("3572713022") then
         Fluent:Notify({
         Title = "Game Detected!",
-        Content = "The game you joined,","idk","has scripts built in scripts. Go to the Scripts tab to try them out!",
+        Content = "The game you joined, "..getGameName().." has supported scripts. Go to the Scripts tab to try them out!",
         SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
         })
@@ -348,7 +348,7 @@ if detectPlaceId("155615604") or detectPlaceId("7993293100") then
 
     if detectPlaceId("7993293100") then
      local drop = Tabs["Scripts"]:AddDropdown("Dropdown", {
-        Title = "Teleport to",
+        Title = "Teleport to (TSUNAMI GAME)",
         Values = {"1 (spawn)","2 (research room)","3 (research cafeteria)","4 (end)","5 (car park)"},
         Multi = false,
         Default = 1,
@@ -362,6 +362,16 @@ if detectPlaceId("155615604") or detectPlaceId("7993293100") then
         game:GetService("ReplicatedStorage").RemoteEvents.Gui.ResearcherTeleportSystem:FireServer(unpack(args))
         end)
     end
+
+    if detectPlaceId("3572713022") then
+        Tabs["Scripts"]:AddButton({
+            Title = "Spawn Cars menu (CCS)",
+            Description = "Click to execute",
+            Callback = function()
+                loadstring(game:HttpGet('https://pastebin.com/raw/9bRZMZ4L'))()
+            end
+        })
+    end    
 
 end     
     -- GAME TAB
@@ -460,6 +470,21 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
     end)
 
     Options.MyToggle:SetValue(game.Players.LocalPlayer.DevEnableMouseLock)
+
+    local Input = Tabs["Player"]:AddInput("sw", {
+        Title = "Set CustomPhysicalProperties\n(Stregthen/Weaken)",
+        Default = "",
+        Placeholder = "Enter a number",
+        Numeric = true, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+          for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		    if child.ClassName == "Part" then
+				child.CustomPhysicalProperties = PhysicalProperties.new(Value, 0.3, 0.5)
+		end
+	end
+        end
+    })  
 
     
     -- TOOLS TAB
