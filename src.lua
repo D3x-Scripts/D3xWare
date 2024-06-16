@@ -145,11 +145,11 @@ info = {
 local dline = "Hewo"
 local hour = gettime(24):format("#H")
 
-if between(5,hour,11) then
+if between(6,hour,11) then
 dline = info["dlines"]["m"][math.random(1,#info["dlines"]["m"])] 
 elseif between(12,hour,18) then
 dline = info["dlines"]["n"][math.random(1,#info["dlines"]["n"])]
-elseif between(19,hour,4) then
+elseif between(19,hour,24) or between(1,hour,5) then
 dline = info["dlines"]["i"][math.random(1,#info["dlines"]["i"])]
 end
 
