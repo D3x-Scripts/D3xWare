@@ -132,10 +132,10 @@ info = {
     },
 	dlines = {
 		m = {
-			"Good Morning,","Why play now","Good day,"
+			"Good Morning,","Why play now","Good day,","Up bright and early,"
 		},
 		n = {
-			"Good afternoon my","Best time to play now, ","Hello,"
+			"Good afternoon my","Best time to play now, ","Hello,","Ooo hello fancy smanchy"
 		},
 		i = {
 			"Sweet Dreams,"
@@ -478,12 +478,9 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
         Numeric = true, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
         Callback = function(Value)
-          for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-		    if child.ClassName == "Part" then
-				child.CustomPhysicalProperties = PhysicalProperties.new(Value, 0.3, 0.5)
-		end
-	end
-        end
+         shared.a = Value
+	    end
+        
     })  
 
     
@@ -588,6 +585,11 @@ while wait() do
     grav(shared.g)
     speed(shared.s)
     jumppower(shared.j)
+     for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		    if child.ClassName == "Part" then
+				child.CustomPhysicalProperties = PhysicalProperties.new(shared.a, 0.3, 0.5)
+		end
+     end   
     if a and queue_on_teleport and (not TeleportCheck) then
         TeleportCheck = true
         --queue_on_teleport("print('hi')")
