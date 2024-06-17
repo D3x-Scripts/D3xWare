@@ -390,11 +390,31 @@ Tabs["Game"]:AddParagraph({
     Title = "Name",
     Content = getGameName(),
 })
-
-Tabs["Game"]:AddParagraph({
-    Title = "Players / Max Players",
-    Content = #game.Players:GetPlayers().."/"..game.Players.MaxPlayers
+local aaa = 1
+print(aaa)
+Tabs["Game"]:AddButton({
+    Title = "Get Player count",
+    Description = "",
+    Callback = function()
+         Window:Dialog({
+                Title = "D3xWare Toolbox",
+                Content = #game.Players:GetPlayers(),
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            
+                        end
+                    },
+                }
+            })
+    end
 })
+Tabs["Game"]:AddParagraph({
+    Title = "Max Players",
+    Content = game.Players.MaxPlayers
+})
+print(aaa)
 Tabs["Game"]:AddParagraph({
     Title = "PlaceId",
     Content = game.PlaceId,
