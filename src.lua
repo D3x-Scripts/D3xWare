@@ -390,8 +390,6 @@ Tabs["Game"]:AddParagraph({
     Title = "Name",
     Content = getGameName(),
 })
-local aaa = 1
-print(aaa)
 Tabs["Game"]:AddButton({
     Title = "Get Player count",
     Description = "",
@@ -414,7 +412,6 @@ Tabs["Game"]:AddParagraph({
     Title = "Max Players",
     Content = game.Players.MaxPlayers
 })
-print(aaa)
 Tabs["Game"]:AddParagraph({
     Title = "PlaceId",
     Content = game.PlaceId,
