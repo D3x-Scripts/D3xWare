@@ -111,8 +111,12 @@ function toClipboard(String)
 	end
 end
 info = {
-    version = "V1.0.7",
+    version = "V1.0.8",
    holidays = {
+       Christmas = {
+           ["emoji"] = "🎄🎄🎄",
+           ["trigger"] = checkDate(12,25)
+       },
        Christmas = {
            ["emoji"] = "🎄",
            ["trigger"] = checkDate(12,25)
@@ -121,6 +125,10 @@ info = {
            ["emoji"] = "🎉",
            ["trigger"] = checkDate(1,1)
        },
+       Halloween = {
+           ["emoji"] = "👻",
+           ["trigger"] = checkDate(8,31)
+       },
    },
     plines = {
         "Defiently not gonna delete the old one again...",
@@ -128,7 +136,10 @@ info = {
 		"Hehehehah",
         "Little John used galvanised square steel and eco-friendly\nwood venners to build his house.",
         "How did i forgort to put out 1.0.4",
-        "Did you know if you streched\nyour blood veins out your body you will die?"
+        "Did you know if you streched\nyour blood veins out your body you will die?",
+        "Accidentally resetted your PC? I did.",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "ÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆ",
     },
 	dlines = {
 		m = {
@@ -155,9 +166,11 @@ end
 
 title = "D3xWare version "..info["version"]
 
-if info["holidays"]["Christmas"] then
-    title = ""..title..""
-end    
+for i,v in pairs(info[holidays]) do
+    if v["trigger"] then
+        title = v["emoji"]..title..v["emoji"]
+     end
+ end       
 
  a = math.random(1,#info["plines"])
  line = info["plines"][a]
@@ -225,12 +238,12 @@ local Tabs = {
         Content = dline.." "..plr.DisplayName.."("..plr.Name..")!"
     })
 	 Tabs.Home:AddParagraph({
-        Title = "Device Using:",
+        Title = "Device:",
         Content = getplatform(),
     })
 
     Tabs["Home"]:AddParagraph({
-        Title = "Exploit using:",
+        Title = "Exploit:",
         Content = exec,
     })
 
@@ -335,23 +348,6 @@ if detectPlaceId("155615604") or detectPlaceId("7993293100") or detectPlaceId("3
         SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
         })
-        if detectPlaceId("155615604") then
-            Tabs["Scripts"]:AddButton({
-            Title = "Inf Statima (PRISON LIFE)",
-            Description = "Click to execute",
-            Callback = function()
-                loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ImMejor35/Prison-Life/main/Infinite%20Stamina.lua"))()
-            end,
-           
-         })
-            Tabs["Scripts"]:AddButton({
-            Title = "Admin (PRISON LIFE)",
-            Description = "Click to execute",
-            Callback = function()
-                loadstring(game:HttpGet("https://pastebin.com/raw/rfAULQ83"))()
-            end,    
-        })
-        end     
 
     if detectPlaceId("7993293100") then
      local drop = Tabs["Scripts"]:AddDropdown("Dropdown", {
@@ -509,6 +505,16 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
 
     
     -- TOOLS TAB
+    
+local Keybind = Tabs["Tools"]:AddKeybind("Keybind", {
+        Title = "Panic Key (leaves the game instantly)",
+        Mode = "Toggle", -- Always, Toggle, Hold
+        Default = "Y", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
+
+        Callback = function(Value)
+            game.Shutdown()
+        end,
+    })
 
    Tabs["Tools"]:AddButton({
        Title = "Find nearest player",
@@ -567,7 +573,7 @@ if queue_on_teleport then
         a = Options.mmm.Value
         TeleportCheck = false
     end)
-end   
+end 
 
 -- Backgears
 
@@ -614,11 +620,11 @@ while wait() do
 				child.CustomPhysicalProperties = PhysicalProperties.new(shared.a, 0.3, 0.5)
 		end
      end   
-    if a and queue_on_teleport and (not TeleportCheck) then
-        TeleportCheck = true
-        --queue_on_teleport("print('hi')")
-        queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
-    end    
+    -- if a and queue_on_teleport and (not TeleportCheck) then
+    --     TeleportCheck = true
+    --     --queue_on_teleport("print('hi')")
+    --     queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
+    -- end    
 end
 end)
                                 
