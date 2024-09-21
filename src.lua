@@ -166,7 +166,7 @@ end
 
 title = "D3xWare version "..info["version"]
 
-for i,v in pairs(info[holidays]) do
+for i,v in pairs(info["holidays"]) do
     if v["trigger"] then
         title = v["emoji"]..title..v["emoji"]
      end
