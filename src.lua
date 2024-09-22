@@ -620,11 +620,11 @@ while wait() do
 				child.CustomPhysicalProperties = PhysicalProperties.new(shared.a, 0.3, 0.5)
 		end
      end   
-    -- if a and queue_on_teleport and (not TeleportCheck) then
-    --     TeleportCheck = true
-    --     --queue_on_teleport("print('hi')")
-    --     queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
-    -- end    
+    if a and queue_on_teleport and (not TeleportCheck) then
+        TeleportCheck = true
+        queue_on_teleport("print('hi')")
+        queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
+    end    
 end
 end)
                                 
