@@ -609,7 +609,7 @@ elseif tonumber(v) ~= nil then
 char.Humanoid.JumpPower = v
 end
 end
-spawn(function()
+task.spawn(function()
 while wait() do
     fov(shared.f)
     grav(shared.g)
@@ -624,8 +624,8 @@ while wait() do
         TeleportCheck = true
         queue_on_teleport("print('hi')")
         queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/D3x-Scripts/D3xWare/main/src.lua'))()")
-    end    
-end
+    end
+end    
 end)
                                 
 -- Addons:
