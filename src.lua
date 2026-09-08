@@ -6,12 +6,13 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local plr = game.Players.LocalPlayer
 local TeleportCheck = false
-shared.a = 0.7
 local Options = Fluent.Options
 local exec = identifyexecutor()
 local a = true
 local line = "Test me, "
+local ShortestDistance = math.huge
 function GetClosestPlayer()
+local e,a,b,c,d = pcall(function()
 local player = game.Players.LocalPlayer
 local players = game.Players:GetPlayers()
   local minDistance = math.huge
@@ -27,9 +28,42 @@ local players = game.Players:GetPlayers()
       display = game.Players:FindFirstChild(closestPlayer.Name).DisplayName
     end
   end
-return {display,closestPlayer,minDistance}
+  name = closestPlayer.Name
+return {display,name,minDistance,closestPlayer}
+end)
+return a,b,c,d
 end
+function getSubplaces()
+local a = {}
+local b = {}
+local t = {}
+local AssetService = game:GetService("AssetService")
 
+local placePages = AssetService:GetGamePlacesAsync()
+
+while true do
+	for i, place in placePages:GetCurrentPage() do
+		n=place.Name
+		id=place.PlaceId
+        a[n]=id
+        b[id]=n
+	end
+	if placePages.IsFinished then
+		break
+	end
+	placePages:AdvanceToNextPageAsync()
+end
+return a,b
+end
+local myTable = getSubplaces()
+local key, value = next(myTable)
+local placename = {}
+local placeid = {}
+while key do
+  table.insert(placename,key)
+  table.insert(placeid,value)
+  key, value = next(myTable, key)
+end
 function toClipboard(String)
 	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
 	if clipBoard then
@@ -114,23 +148,27 @@ function toClipboard(String)
 	end
 end
 info = {
-    version = "V1.0.8",
+    version = "V1.0.9",
    holidays = {
        Christmas = {
            ["emoji"] = "🎄🎄🎄",
            ["trigger"] = checkDate(12,25)
        },
-       Christmas = {
+       ChristmasEve = {
            ["emoji"] = "🎄",
-           ["trigger"] = checkDate(12,25)
+           ["trigger"] = checkDate(12,24)
+       },
+       BoxingDay = {
+           ["emoji"] = "🎄🎁",
+           ["trigger"] = checkDate(12,24)
        },
        NY = {
            ["emoji"] = "🎉",
            ["trigger"] = checkDate(1,1)
        },
-       Halloween = {
-           ["emoji"] = "👻",
-           ["trigger"] = checkDate(8,31)
+       NeverForget = {
+           ["emoji"] = "🕊️🌹",
+           ["trigger"] = checkDate(8,31) or checkDate(7,21)
        },
    },
     plines = {
@@ -143,6 +181,8 @@ info = {
         "Accidentally resetted your PC? I did.",
         "AAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "ÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆ",
+        "Lesbian Space Princess is shit.",
+        "hello fellow skid"
     },
 	dlines = {
 		m = {
@@ -186,7 +226,7 @@ configs = {
     SubTitle = line,
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = true,
     Theme = "Dark",
     },
     tab = {
@@ -198,6 +238,10 @@ configs = {
             Title = "Game",
             Icon = "gamepad-2",
         },
+        Server = {
+            Title = "Server",
+            Icon = "server",
+        },    
         Scripts = {
             Title = "Scripts",
             Icon = "scroll",
@@ -216,7 +260,8 @@ configs = {
         },
     }
 }
-
+function formatn(a,b) return (a ~= b and a.."("..b..")") or b end
+greet = formatn(plr.DisplayName,plr.Name)
 local Window = Fluent:CreateWindow(configs["win"])
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
@@ -224,6 +269,7 @@ local Tabs = {
     Home = Window:AddTab(configs["tab"]["Home"]),
     Scripts = Window:AddTab(configs["tab"]["Scripts"]),
     Game = Window:AddTab(configs["tab"]["Game"]),
+    Server = Window:AddTab(configs["tab"]["Server"]),
     Player = Window:AddTab(configs["tab"]["Player"]),
     Tools = Window:AddTab(configs["tab"]["Tools"]),
     Settings = Window:AddTab(configs["tab"]["Settings"]),
@@ -232,13 +278,13 @@ local Tabs = {
     Fluent:Notify({
         Title = "Hey, over here!",
         Content = "Join our group at BloxRob Studios!",
-        SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
+        SubContent = "lolz", -- Optional
         Duration = 2 -- Set to nil to make the notification not disappear
     })
 
     Tabs.Home:AddParagraph({
         Title = "Welcome Back!",
-        Content = dline.." "..plr.DisplayName.."("..plr.Name..")!"
+        Content = dline.." "..greet.."!"
     })
 	 Tabs.Home:AddParagraph({
         Title = "Device:",
@@ -254,19 +300,13 @@ local Tabs = {
 
     Tabs["Scripts"]:AddParagraph({
         Title = "Popular Scripts",
-        Content = "Scripts popular in the exploiting community.",
+        Content = "Scripts popular among in the exploiting community.",
     })
-function loadScript(v)
-getgenv().f = v
-getgenv().m = false
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/O2-FE-Script-hub/main/src"))()
-end
-
     Tabs["Scripts"]:AddButton({
         Title = "Infinite Yield",
         Description = "Click to execute",
         Callback = function()
-            loadScript("iy")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
         end,
     })
     
@@ -274,14 +314,14 @@ end
         Title = "Domain X",
         Description = "Click to execute",
         Callback = function()
-          loadScript("domain x")
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
         end,
     })
      Tabs["Scripts"]:AddButton({
         Title = "Ultimate Trolling GUI",
         Description = "Click to execute",
         Callback = function()
-          loadScript("utg")
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/Blukez/Scripts/main/UTG%20V3%20RAW"))()
         end,
     })
     Tabs["Scripts"]:AddButton({
@@ -296,7 +336,7 @@ end
         Description = "Click to execute",
         Callback = function()
            loadstring(
-  game:HttpGetAsync("https://raw.githubusercontent.com/richie0866/orca/master/public/latest.lua")
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/DarkNetworks/Orca/master/public/latest.lua"))()
 )()
         end,
     })
@@ -308,14 +348,14 @@ end
         Title = "Notepad GUI",
         Description = "Click to execute",
         Callback = function()
-          loadScript("notesgui")
+          loadstring(game:HttpGet("https://pastebin.com/raw/jX37k5Qn"))()
         end,
     }) 
        Tabs["Scripts"]:AddButton({
-        Title = "Dark Hub",
+        Title = "Cobalt",
         Description = "Click to execute",
         Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/d",true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Wortexios/CobaltSpy/refs/heads/main/Cobalt"))()
         end,
        })
         Tabs["Scripts"]:AddButton({
@@ -332,13 +372,13 @@ end
         loadstring(game:HttpGet("https://pastebin.com/raw/8Q4X7RfN",true))()
         end,
        })
-        Tabs["Scripts"]:AddButton({
-        Title = "Remove display names",
+       Tabs["Scripts"]:AddButton({
+        Title = "Spectate GUI",
         Description = "Click to execute",
         Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Deez-Nuts445/GHSandbox_LUA_1/main/displayremover.lua"))()
+        loadstring(game:HttpGet("https://pastebin.com/raw/8Q4X7RfN",true))()
         end,
-    })
+       })
      Tabs["Scripts"]:AddParagraph({
         Title = "Game Scripts",
         Content = "If you join a supported game, then you will see some scripts.", 
@@ -411,29 +451,90 @@ Tabs["Game"]:AddParagraph({
     Title = "Max Players",
     Content = game.Players.MaxPlayers
 })
-Tabs["Game"]:AddParagraph({
-    Title = "PlaceId",
+ Tabs["Game"]:AddParagraph({
+    Title = "Game Id",
+    Content = game.GameId,
+})
+    
+    Tabs["Game"]:AddButton({
+    Title = "Copy Game ID",
+    Description = "Copy the place id of the game",
+    Callback = function()
+        toClipboard(game.GameId)
+        Fluent:Notify({
+        Title = "Copied!",
+        Content = "Content has been copied!",
+        SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+        })
+    end
+})
+    -- SERVER TAB
+ Tabs["Server"]:AddParagraph({
+    Title = "Place Id",
     Content = game.PlaceId,
 })
- Tabs["Game"]:AddButton({
+    
+    Tabs["Server"]:AddButton({
+    Title = "Copy Place ID",
+    Description = "Copy the place id of the game",
+    Callback = function()
+        toClipboard(game.PlaceId)
+        Fluent:Notify({
+        Title = "Copied!",
+        Content = "Content has been copied!",
+        SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+        })
+    end
+})
+  
+    Tabs["Server"]:AddButton({
             Title = "Rejoin",
             Description = "Click to execute",
             Callback = function()
                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
             end,    
         })
-Tabs["Game"]:AddButton({
+Tabs["Server"]:AddButton({
         Title = "Exit",
         Description  = "Click to exit with style",
         Callback = function()
        game:Shutdown()
         end
 })
+    
+     Tabs["Server"]:AddParagraph({
+       Title = "Place Joiner",
+       Content = "D3xWare will help you find places in this game, you will then be able to teleport to them."
+   })
+
+    local drop = Tabs["Server"]:AddDropdown("Dropdown", {
+        Title = "Places list",
+        Values = placename,
+        Multi = false,
+        Default = 1,
+    })
+      drop:OnChanged(function(Value)
+       shared.id = tonumber(getSubplaces()[Value]) or 0
+    end)
+  Tabs["Server"]:AddButton({
+        Title = "Teleport",
+        Description  = "Click to teleport to given place.",
+        Callback = function()
+        local db
+            if not db then
+                db = true
+                game:GetService("TeleportService"):Teleport(shared.id)
+            end
+        end
+})
+    
     -- PLAYER TAB
 local Input = Tabs["Player"]:AddInput("Speed", {
         Title = "Speed",
-        Default = "16",
-        Placeholder = "Change your speed",
+        --Default = tonumber(shared.s),
+        Placeholder = "Changes your speed",
         Numeric = true, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
         Callback = function(Value)
@@ -442,7 +543,7 @@ local Input = Tabs["Player"]:AddInput("Speed", {
     })  
 local Input = Tabs["Player"]:AddInput("Jump Power", {
         Title = "Jump Power",
-        Default = "50",
+        --Default = tonumber(shared.j),
         Placeholder = "Change your jump power",
         Numeric = true, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
@@ -450,28 +551,58 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
            shared.j = Value
         end
     })  
-      local Slider = Tabs["Player"]:AddSlider("FOV", {
+      local Input = Tabs["Player"]:AddInput("Gravity", {
         Title = "FOV",
-        Description = "Change your FOV",
-        Default = 70,
-        Min = 1,
-        Max = 200,
-        Rounding = 1,
+        --Default = tonumber(shared.f),
+        Placeholder = "Changes your FOV",
+        Numeric = true, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
         Callback = function(Value)
            shared.f = Value
         end
     })
         local Input = Tabs["Player"]:AddInput("Gravity", {
         Title = "Gravity",
-        Default = "196.2",
-        Placeholder = "Change your gravity",
+        --Default = tonumber(shared.g),
+        Placeholder = "Changes your gravity",
         Numeric = true, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
         Callback = function(Value)
            shared.g = Value
         end
     })  
-
+     local Input = Tabs["Player"]:AddInput("sw", {
+        Title = "Set CustomPhysicalProperties\n(Stregthen/Weaken)",
+        --Default = tonumber(shared.a),
+        Placeholder = "Enter a number/inf",
+        Numeric = true, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+         shared.a = Value
+	    end
+        
+    })  
+       Tabs["Player"]:AddButton({
+        Title = "Confirm",
+        Description  = "Click to change speed, jump power, gravity, fov and strength",
+        Callback = function()
+            game.workspace.Gravity = shared.g
+            workspace.CurrentCamera.FieldOfView = shared.f
+             game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = shared.s
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = shared.j
+             for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		    if child.ClassName == "Part" then
+				child.CustomPhysicalProperties = PhysicalProperties.new(shared.a, 0.3, 0.5)
+		end
+     end 
+        Fluent:Notify({
+        Title = "Done!",
+        Content = "Use the keybind Left Ctrl + P to toggle freecam.",
+        SubContent = "Mabye follow deez-nuts445 on github?", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+        })
+        end
+    })
     Tabs["Player"]:AddButton({
         Title = "Freecam Unlock",
         Description  = "Click to execute",
@@ -491,31 +622,19 @@ local Input = Tabs["Player"]:AddInput("Jump Power", {
     Toggle:OnChanged(function()
         game.Players.LocalPlayer.DevEnableMouseLock = Options.MyToggle.Value
     end)
-
+    
     Options.MyToggle:SetValue(game.Players.LocalPlayer.DevEnableMouseLock)
-
-    local Input = Tabs["Player"]:AddInput("sw", {
-        Title = "Set CustomPhysicalProperties\n(Stregthen/Weaken)",
-        Default = 0.7,
-        Placeholder = "Enter a number/inf",
-        Numeric = false, -- Only allows numbers
-        Finished = false, -- Only calls callback when you press enter
-        Callback = function(Value)
-         shared.a = Value
-	    end
-        
-    })  
 
     
     -- TOOLS TAB
-    
-local Keybind = Tabs["Tools"]:AddKeybind("Keybind", {
+
+    local Keybind = Tabs["Tools"]:AddKeybind("Keybind", {
         Title = "Panic Key (leaves the game instantly)",
         Mode = "Toggle", -- Always, Toggle, Hold
         Default = "Y", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
 
         Callback = function(Value)
-            game.Shutdown()
+            game:Shutdown()
         end,
     })
 
@@ -524,8 +643,10 @@ local Keybind = Tabs["Tools"]:AddKeybind("Keybind", {
        Description = "Click to find (a bit broken)",
        Callback = function()
        stuff= GetClosestPlayer()
-       print(stuff[1])
-       msg = stuff[1],"with a distance of ",stuff[3]
+       dn=tostring(stuff[1]) or "Display"
+       n=tostring(stuff[2]) or "Name"
+       d=tonumber(stuff[3]) or 0
+       msg = formatn(dn,n).." with a distance of about "..math.round(d).." studs."
         Window:Dialog({
                 Title = "D3xWare Toolbox",
                 Content = msg,
@@ -533,39 +654,13 @@ local Keybind = Tabs["Tools"]:AddKeybind("Keybind", {
                     {
                         Title = "Confirm",
                         Callback = function()
-                            print("Confirmed the dialog.")
+                           
                         end
                     },
                 }
             })
        end
    })
-
-   -- too lazy to try to make it
-
---   Tabs["Tools"]:AddParagraph({
---       Title = "Game Joiner",
---       Content = "Enter a game's place id, then click on the teleport button."
---   })
-
---   Tabs["Tools"]:AddInput("aa",{
---       Title = "Place ID",
---       Default = "",
---       Placeholder = "Put in the Place ID.",
---       Numeric = true,
---       Finished = false,
---       Callback = function(v)
---         shared.id = v
---       end
---   })
-
---   Tabs["Tools"]:AddButton({
---         Title = "Teleport",
---         Description  = "Click to teleport to given place id(WIP)",
---         Callback = function()
---             game:GetService("TeleportService"):TeleportToPlaceInstance(shared.id , game.Players.LocalPlayer)
---        end
---   })
 
 -- SETTINGS TAB
 
@@ -580,49 +675,8 @@ end
 
 -- Backgears
 
-function grav(n)
-if n == "def" then
-game.workspace.Gravity = 192.6
-elseif tonumber(n) ~= nil then
-game.workspace.Gravity = n
-end
-end
-function fov(v)
-if v == "def" then
-workspace.CurrentCamera.FieldOfView = 70
-elseif tonumber(v) ~= nil then
-workspace.CurrentCamera.FieldOfView = v
-end
-end
-function speed(v)
-local lp = game.Players.LocalPlayer
-local char = lp.Character
-if v == "def" then
-char.Humanoid.WalkSpeed = 16
-elseif tonumber(v) ~= nil then
-char.Humanoid.WalkSpeed = v
-end
-end
-function jumppower(v)
-local lp = game.Players.LocalPlayer
-local char = lp.Character
-if v == "def" then
-char.Humanoid.JumpPower = 50
-elseif tonumber(v) ~= nil then
-char.Humanoid.JumpPower = v
-end
-end
 task.spawn(function()
-while wait() do
-    fov(shared.f)
-    grav(shared.g)
-    speed(shared.s)
-    jumppower(shared.j)
-     for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-		    if child.ClassName == "Part" then
-				child.CustomPhysicalProperties = PhysicalProperties.new(shared.a, 0.3, 0.5)
-		end
-     end   
+while wait() do  
     if a and queue_on_teleport and (not TeleportCheck) then
         TeleportCheck = true
         queue_on_teleport("print('hi')")
@@ -661,3 +715,4 @@ Window:SelectTab(1)
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+
